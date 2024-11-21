@@ -1,3 +1,4 @@
+from Guesserator import guesserate
 
 def main():
     print("Welcome to the Genre Classifier!")
@@ -7,7 +8,7 @@ def main():
     wav = None
 
     #call wav-to-genre fcn
-    genre = None
+    genre = guesserate(wav)
 
     print("The genre of this song is " + genre + "!")
 
