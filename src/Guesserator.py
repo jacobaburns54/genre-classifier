@@ -103,7 +103,7 @@ def guesserate(file_path):
     # Convert the predicted class index back to the genre name
     predicted_genre = label_encoder.inverse_transform(predicted_class)
 
-    return predicted_genre[0]
+    return (predicted_genre[0], predictions[0][predicted_class][0])
 
 if __name__ == '__main__':
     print(guesserate("Data/genres_original/blues/blues.00000.wav"))
