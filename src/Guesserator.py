@@ -105,5 +105,6 @@ def guesserate(file_path):
 
     return predicted_genre[0]
 
-print(guesserate("Data/genres_original/blues/blues.00000.wav"))
-print(guesserate("spring.wav"))
+if __name__ == '__main__':
+    print(guesserate("Data/genres_original/blues/blues.00000.wav"))
+    print(guesserate("spring.wav"))
