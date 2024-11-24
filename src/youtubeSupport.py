@@ -10,6 +10,7 @@ def youtube_get(url: str):
     ydl_opts = {
         'format': 'bestaudio/best',
         'quiet': True,  # Suppress all output
+        'logger': None,
         'postprocessors': [{
             'key': 'FFmpegExtractAudio',
             'preferredcodec': 'wav',
