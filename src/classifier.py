@@ -11,9 +11,10 @@ def main():
     wav = youtube_get(link)
 
     #call wav-to-genre fcn
-    genre = guesserate(wav)
+    (genre, certainty) = guesserate(wav)
 
     print("The genre of this song is " + genre + "!")
+    print("With certainty: " + int(certainty*100) + "%!")
 
 if __name__ == "__main__":
     main()
