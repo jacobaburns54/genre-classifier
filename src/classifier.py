@@ -1,7 +1,12 @@
 from Guesserator import guesserate
 from youtubeSupport import youtube_get
+import random
 def run_comparison(function):
     pass
+
+def random_guess(wav):
+    g = ["blues", "classical", "country", "disco", "hiphop", "jazz", "metal", "pop", "reggae", "rock"]
+    return random.choice(g),(1 / len(g))
 
 def main():
     print("Welcome to the Genre Classifier!")
@@ -9,12 +14,9 @@ def main():
 
     #call link-to-wav fcn
     wav = youtube_get(link)
-
-    #call wav-to-genre fcn
-    (genre, certainty) = guesserate(wav)
-
-    print("The genre of this song is " + genre + "!")
-    print("With certainty: " + int(certainty*100) + "%!")
-
+    methods = [("CRNN",guesserate), ("Random",random_guess)]
+    for name, m in methods:
+        (genre, certainty) = m(wav)
+        print("{}: Song is {} with {}% certainty".format(name, genre, int(100*certainty)))
 if __name__ == "__main__":
     main()

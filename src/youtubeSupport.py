@@ -9,10 +9,10 @@ def youtube_get(url: str):
     path = yt.extract_info(url, download=False)['title']
     ydl_opts = {
         'format': 'bestaudio/best',
+        'quiet': True,  # Suppress all output
         'postprocessors': [{
             'key': 'FFmpegExtractAudio',
             'preferredcodec': 'wav',
-            'preferredquality': '192',
         }],
         'outtmpl': path,  # Output file path
     }
