@@ -2,11 +2,16 @@ import subprocess
 import sys
 import os
 from yt_dlp import YoutubeDL
-#needs to be 30s, mono
 
 def youtube_get(url: str):
     yt=YoutubeDL()
-    path = yt.extract_info(url, download=False)['title']
+    info = yt.extract_info(url, download=False)
+    path = info['title']
+    duration = info['duration']
+    if duration < 60:
+        print("Warning! song shorter than 60s!")
+    else:
+        duration = 60
     ydl_opts = {
         'format': 'bestaudio/best',
         'quiet': True,  # Suppress all output
@@ -22,8 +27,8 @@ def youtube_get(url: str):
     trim_command = [
         'ffmpeg',
         '-i', path+".wav",  # Input file
-        '-ss', '30',
-        '-t', '60',  # Trim to 30 seconds
+        '-ss', '30', # start 30s in
+        '-t', str(duration),  # Trim to 30 seconds
         '-ac', '1',  # Convert to mono
         '-loglevel', 'error',
         path+"-trimmed.wav"  # Output file
